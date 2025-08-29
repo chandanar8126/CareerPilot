@@ -1,0 +1,12 @@
+# Ignore React setup folder
+careerpilot/
+
+# Ignore node-related stuff (if accidentally present)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore system files
+.DS_Store
+Thumbs.db
