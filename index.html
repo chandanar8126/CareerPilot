@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareerPilot - Home</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- ==== NAVBAR ==== -->
+  <header>
+    <nav>
+      <div class="logo">🚀 CareerPilot</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#" onclick="checkLogin('career.html')">Career Paths</a></li>
+        <li><a href="#" onclick="checkLogin('interview.html')">Interview Prep</a></li> 
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ==== HERO SECTION ==== -->
+  <section class="hero">
+    <h2>Find Your Path. Ace Your Interviews.</h2>
+    <p>
+      An AI-powered platform to help you explore careers, build skills, and practice interviews — all in one place.
+    </p>
+    <div class="cta-buttons">
+      <a href="#" class="btn" onclick="checkLogin('career.html')">Explore Career Paths</a>
+      <a href="#" class="btn secondary" onclick="checkLogin('interview.html')">Start Interview Prep</a>
+    </div>
+  </section>
+
+  <!-- ==== FEATURES SECTION ==== -->
+  <section class="features">
+    <h3>Why Choose CareerPilot?</h3>
+    <div class="feature-grid">
+      <div class="feature">
+        <h4>🎯 Career Guidance</h4>
+        <p>Get AI-driven recommendations tailored to your skills and interests.</p>
+      </div>
+      <div class="feature">
+        <h4>📚 Skill Building</h4>
+        <p>Access curated resources to improve the skills needed for your dream job.</p>
+      </div>
+      <div class="feature">
+        <h4>💼 Mock Interviews</h4>
+        <p>Practice with real-world interview questions to boost your confidence.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== ABOUT US SECTION ==== -->
+  <section class="about">
+    <div class="about-container">
+      <div class="about-image">
+        <img src="assets/images/about.svg" alt="About CareerPilot" class="about-img">
+      </div>
+      <div class="about-text">
+        <h3>About Us</h3>
+        <p>
+          At CareerPilot, our mission is to guide students and professionals toward meaningful careers.
+          We combine cutting-edge AI with expert insights to help you identify the right path, build your
+          skills, and prepare for interviews with confidence.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== CONTACT US SECTION ==== -->
+  <section class="contact">
+    <h3>Contact Us</h3>
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="info-card">
+          <i class="fas fa-envelope"></i>
+          <p>support@careerpilot.com</p>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-phone"></i>
+          <p>+91 9876543210</p>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-map-marker-alt"></i>
+          <p>Bangalore, India</p>
+        </div>
+      </div>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <textarea rows="4" placeholder="Your Message"></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ==== FOOTER ==== -->
+  <footer>
+    <p>&copy; 2025 CareerPilot. All Rights Reserved.</p>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+  <script src="assets\js\auth.js"></script>
+</body>
+</html>
