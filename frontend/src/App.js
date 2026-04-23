@@ -6,7 +6,7 @@ import Career from "./pages/Career";
 import Interview from "./pages/Interview";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import "./App.css";   
+import "./assets/css/style.css";
 
 function App() {
   return (

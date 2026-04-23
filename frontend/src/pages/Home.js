@@ -11,10 +11,10 @@ function Home() {
       </p>
       <div className="cta-buttons">
         <button className="btn" onClick={() => setShowMsg(!showMsg)}>
-          {showMsg ? "Hide Message" : "Click Me"}
+          {showMsg ? "Hide Message" : "Get Started"}
         </button>
       </div>
-      {showMsg && <p>🚀 Welcome to CareerPilot React!</p>}
+      {showMsg && <p>🚀 Welcome to CareerPilot!</p>}
     </section>
   );
 }
