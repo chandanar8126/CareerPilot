@@ -17,11 +17,24 @@ app.use("/api/skills", require("./routes/skillRoutes"));
 
 app.get("/", (req, res) => res.json({ message: "CareerPilot API running!" }));
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
+const startServer = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 30000,
+      socketTimeoutMS: 45000,
+      family: 4,
+    });
     console.log("✅ MongoDB Connected");
     app.listen(process.env.PORT || 5000, () =>
       console.log(`🚀 Server running on port ${process.env.PORT || 5000}`)
     );
-  })
-  .catch((err) => console.log("❌ MongoDB Error:", err));
+  } catch (err) {
+    console.log("❌ MongoDB Error:", err.message);
+    console.log("⚠️ Starting server without MongoDB...");
+    app.listen(process.env.PORT || 5000, () =>
+      console.log(`🚀 Server running on port ${process.env.PORT || 5000} (no DB)`)
+    );
+  }
+};
+
+startServer();
