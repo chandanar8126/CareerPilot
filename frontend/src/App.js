@@ -6,6 +6,7 @@ import Career from "./pages/Career";
 import Interview from "./pages/Interview";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import AIChat from "./pages/AIChat";
 import ProtectedRoute from "./components/ProtectedRoute";
 import "./assets/css/style.css";
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/career" element={<ProtectedRoute><Career /></ProtectedRoute>} />
         <Route path="/interview" element={<ProtectedRoute><Interview /></ProtectedRoute>} />
+        <Route path="/chat" element={<ProtectedRoute><AIChat /></ProtectedRoute>} />
       </Routes>
       <Footer />
     </Router>

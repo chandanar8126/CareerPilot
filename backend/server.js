@@ -14,6 +14,7 @@ app.use(limiter);
 
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/skills", require("./routes/skillRoutes"));
+app.use("/api/ai", require("./routes/aiRoutes"));
 
 app.get("/", (req, res) => res.json({ message: "CareerPilot API running!" }));
 
