@@ -106,6 +106,30 @@ function Login() {
         />
         Continue with Google
       </a>
+        {/* GITHUB LOGIN */}
+        <a
+          href="http://localhost:5000/auth/github"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "0.8rem",
+            padding: "0.8rem",
+            borderRadius: "10px",
+            background: "rgba(255,255,255,0.1)",
+            border: "1px solid rgba(255,255,255,0.2)",
+            color: "#fff",
+            textDecoration: "none",
+            marginBottom: "1rem",
+          }}
+        >
+          <img
+            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+            alt="github"
+            style={{ width: "20px", height: "20px" }}
+          />
+          Continue with GitHub
+        </a>
 
         <p>
           Don't have an account? <Link to="/signup">Sign up</Link>

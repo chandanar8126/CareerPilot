@@ -77,9 +77,9 @@ function Career() {
   const progress = Math.min((skills.length / 10) * 100, 100);
 
   const tabs = [
-    { id: "skills", label: "🛠️ My Skills" },
+    { id: "skills", label: " My Skills" },
     { id: "ai", label: "🤖 AI Career Advice" },
-    { id: "resume", label: "📄 Resume Tips" },
+    { id: "resume", label: "Resume Tips" },
   ];
 
   return (
@@ -156,7 +156,7 @@ function Career() {
             {aiAdvice && !aiLoading && (
               <div>
                 <div style={{ background: "rgba(0,245,212,0.05)", borderRadius: "15px", padding: "1.5rem", marginBottom: "1.5rem", border: "1px solid rgba(0,245,212,0.2)" }}>
-                  <h4 style={{ color: "#00f5d4", marginBottom: "0.5rem" }}>🎯 AI Summary</h4>
+                  <h4 style={{ color: "#00f5d4", marginBottom: "0.5rem" }}> AI Summary</h4>
                   <p style={{ color: "#ccc", lineHeight: "1.8" }}>{aiAdvice.summary}</p>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
@@ -217,7 +217,7 @@ function Career() {
                     ))}
                   </div>
                   <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "15px", padding: "1.5rem" }}>
-                    <h4 style={{ color: "#4facfe", marginBottom: "1rem" }}>🔑 Keywords to Include</h4>
+                    <h4 style={{ color: "#4facfe", marginBottom: "1rem" }}> Keywords to Include</h4>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
                       {resumeTips.keywords?.map((kw, i) => (
                         <span key={i} style={{ background: "rgba(79,172,254,0.2)", border: "1px solid #4facfe", borderRadius: "15px", padding: "0.3rem 0.8rem", color: "#4facfe", fontSize: "0.9rem" }}>{kw}</span>
