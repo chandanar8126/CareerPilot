@@ -38,7 +38,7 @@ function Career() {
       const res = await axios.post("http://localhost:5000/api/skills", { name: newSkill }, { headers });
       setSkills([...skills, res.data]);
       setNewSkill("");
-      setMsg("✅ Skill added!");
+      setMsg(" Skill added!");
       setTimeout(() => setMsg(""), 2000);
     } catch { setMsg("❌ Failed to add skill"); }
   };

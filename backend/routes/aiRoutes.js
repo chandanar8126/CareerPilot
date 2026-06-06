@@ -4,7 +4,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 const router = express.Router();
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 // AI Interview Feedback
 router.post("/interview-feedback", authMiddleware, async (req, res) => {
@@ -79,7 +79,7 @@ Be concise, practical, and encouraging.
 User question: ${message}
 
 Give a helpful, conversational response in 2-4 sentences.`;
-    
+
     const result = await model.generateContent(prompt);
     const response = result.response.text();
     res.json({ response });

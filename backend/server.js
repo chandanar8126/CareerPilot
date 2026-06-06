@@ -23,6 +23,8 @@ app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/skills", require("./routes/skillRoutes"));
 app.use("/api/ai", require("./routes/aiRoutes"));
 
+app.use("/api/jobs", require("./routes/jobRoutes"));
+
 app.get("/", (req, res) => res.json({ message: "CareerPilot API running!" }));
 
 const startServer = async () => {
@@ -32,15 +34,15 @@ const startServer = async () => {
       socketTimeoutMS: 45000,
       family: 4,
     });
-    console.log("✅ MongoDB Connected");
+    console.log(" MongoDB Connected");
     app.listen(process.env.PORT || 5000, () =>
-      console.log(`🚀 Server running on port ${process.env.PORT || 5000}`)
+      console.log(` Server running on port ${process.env.PORT || 5000}`)
     );
   } catch (err) {
-    console.log("❌ MongoDB Error:", err.message);
-    console.log("⚠️ Starting server without MongoDB...");
+    console.log(" MongoDB Error:", err.message);
+    console.log(" Starting server without MongoDB...");
     app.listen(process.env.PORT || 5000, () =>
-      console.log(`🚀 Server running on port ${process.env.PORT || 5000} (no DB)`)
+      console.log(` Server running on port ${process.env.PORT || 5000} (no DB)`)
     );
   }
 };
