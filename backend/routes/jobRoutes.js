@@ -6,8 +6,6 @@ const router = express.Router();
 const APP_ID = process.env.ADZUNA_APP_ID;
 const APP_KEY = process.env.ADZUNA_APP_KEY;
 
-console.log("Adzuna creds:", APP_ID, APP_KEY);
-
 router.get("/search", authMiddleware, async (req, res) => {
   try {
     const { query = "software developer", location = "india", page = 1 } = req.query;
