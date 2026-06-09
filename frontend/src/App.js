@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import "./assets/css/style.css";
 import AuthSuccess from "./pages/AuthSuccess";
 import Jobs from "./pages/Jobs";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/chat" element={<ProtectedRoute><AIChat /></ProtectedRoute>} />
         <Route path="/auth/success" element={<AuthSuccess />} />
         <Route path="/jobs" element={<ProtectedRoute><Jobs /></ProtectedRoute>} />
+        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       </Routes>
       <Footer />
     </Router>

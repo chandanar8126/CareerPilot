@@ -10,7 +10,7 @@ function Header() {
   return (
     <header>
       <nav>
-        <div className="logo">🚀 CareerPilot</div>
+        <div className="logo">CareerPilot</div>
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
           {user ? (
@@ -18,7 +18,8 @@ function Header() {
               <li><Link to="/career">Career Paths</Link></li>
               <li><Link to="/interview">Interview Prep</Link></li>
               <li><Link to="/jobs">Jobs</Link></li>
-              <li><Link to="/chat">🤖 AI Chat</Link></li>
+              <li><Link to="/chat">AI Chat</Link></li>
+              <li><Link to="/profile">Profile</Link></li>
               <li><button className="btn" style={{ padding: "0.4rem 1rem" }} onClick={handleLogout}>Logout</button></li>
             </>
           ) : (

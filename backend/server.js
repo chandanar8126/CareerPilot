@@ -25,6 +25,8 @@ app.use("/api/ai", require("./routes/aiRoutes"));
 
 app.use("/api/jobs", require("./routes/jobRoutes"));
 
+app.use("/api/profile", require("./routes/profileRoutes"));
+
 app.get("/", (req, res) => res.json({ message: "CareerPilot API running!" }));
 
 const startServer = async () => {
