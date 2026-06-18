@@ -18,15 +18,15 @@ function Home() {
         <h3>Why Choose CareerPilot?</h3>
         <div className="feature-grid">
           <div className="feature">
-            <h4>🚀 Career Guidance</h4>
+            <h4>Career Guidance</h4>
             <p>Get AI-driven recommendations tailored to your skills and interests.</p>
           </div>
           <div className="feature">
-            <h4>📚 Skill Building</h4>
+            <h4>Skill Building</h4>
             <p>Track your skills and get curated resources to improve them.</p>
           </div>
           <div className="feature">
-            <h4>🎯 Interview Prep</h4>
+            <h4>Interview Prep</h4>
             <p>Practice with mock interviews, MCQs, and get instant feedback.</p>
           </div>
         </div>
