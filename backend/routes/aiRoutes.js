@@ -1,10 +1,29 @@
 const express = require("express");
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const axios = require("axios");
 const authMiddleware = require("../middleware/authMiddleware");
 const router = express.Router();
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
+const GROQ_MODEL = "llama-3.3-70b-versatile";
+
+const groqRequest = async (prompt) => {
+  const res = await axios.post(
+    GROQ_API_URL,
+    {
+      model: GROQ_MODEL,
+      messages: [{ role: "user", content: prompt }],
+      temperature: 0.7,
+      max_tokens: 1024,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  return res.data.choices[0].message.content;
+};
 
 // AI Interview Feedback
 router.post("/interview-feedback", authMiddleware, async (req, res) => {
@@ -25,13 +44,11 @@ Give structured feedback in this exact JSON format:
 }
 Only respond with the JSON, no extra text.`;
 
-    const result = await model.generateContent(prompt);
-    const text = result.response.text();
+    const text = await groqRequest(prompt);
     const clean = text.replace(/```json|```/g, "").trim();
-    const feedback = JSON.parse(clean);
-    res.json(feedback);
+    res.json(JSON.parse(clean));
   } catch (err) {
-    console.error(err);
+    console.error("Interview feedback error:", err.message);
     res.status(500).json({ message: "AI feedback failed" });
   }
 });
@@ -54,38 +71,34 @@ router.post("/career-advice", authMiddleware, async (req, res) => {
   ],
   "summary": "One paragraph personalized advice"
 }
-Give exactly 3 careers. Only respond with JSON.`;
+Give exactly 3 careers. Only respond with JSON, no extra text.`;
 
-    const result = await model.generateContent(prompt);
-    const text = result.response.text();
+    const text = await groqRequest(prompt);
     const clean = text.replace(/```json|```/g, "").trim();
-    const advice = JSON.parse(clean);
-    res.json(advice);
+    res.json(JSON.parse(clean));
   } catch (err) {
-    console.error(err);
+    console.error("Career advice error:", err.message);
     res.status(500).json({ message: "AI career advice failed" });
   }
 });
 
 // AI Chat Assistant
-// AI Chat Assistant
 router.post("/chat", authMiddleware, async (req, res) => {
   try {
     const { message } = req.body;
-    const prompt = `You are CareerPilot AI, a helpful career assistant for students and professionals. 
-Help with career advice, interview preparation, skill building, resume tips, and job search strategies. 
-Be concise, practical, and encouraging. 
+    const prompt = `You are CareerPilot AI, a helpful career assistant for students and professionals.
+Help with career advice, interview preparation, skill building, resume tips, and job search strategies.
+Be concise, practical, and encouraging.
 
 User question: ${message}
 
 Give a helpful, conversational response in 2-4 sentences.`;
 
-    const result = await model.generateContent(prompt);
-    const response = result.response.text();
+    const response = await groqRequest(prompt);
     res.json({ response });
   } catch (err) {
     console.error("Chat error:", err.message);
-    res.status(500).json({ message: "AI chat failed: " + err.message });
+    res.status(500).json({ message: "AI chat failed" });
   }
 });
 
@@ -93,22 +106,41 @@ Give a helpful, conversational response in 2-4 sentences.`;
 router.post("/resume-tips", authMiddleware, async (req, res) => {
   try {
     const { skills, targetRole } = req.body;
-    const prompt = `Give resume tips for someone with skills: ${skills.join(", ")} targeting a ${targetRole} role. Respond in JSON:
+    const prompt = `Give resume tips for someone with skills: ${skills.join(", ")} targeting a ${targetRole} role. Respond in this exact JSON format:
 {
   "tips": ["tip1", "tip2", "tip3", "tip4", "tip5"],
   "keywords": ["keyword1", "keyword2", "keyword3"],
   "summary": "A sample professional summary for their resume in 2-3 sentences"
 }
-Only respond with JSON.`;
+Only respond with JSON, no extra text.`;
 
-    const result = await model.generateContent(prompt);
-    const text = result.response.text();
+    const text = await groqRequest(prompt);
     const clean = text.replace(/```json|```/g, "").trim();
-    const tips = JSON.parse(clean);
-    res.json(tips);
+    res.json(JSON.parse(clean));
   } catch (err) {
-    console.error(err);
+    console.error("Resume tips error:", err.message);
     res.status(500).json({ message: "Resume tips failed" });
+  }
+});
+
+// AI Custom Roadmap
+router.post("/roadmap", authMiddleware, async (req, res) => {
+  try {
+    const { skills, targetRole } = req.body;
+    const prompt = `You are a career coach. Generate a custom learning roadmap for someone targeting a ${targetRole} role with these existing skills: ${skills.join(", ")}.
+Respond in this exact JSON format:
+{
+  "summary": "2 sentence personalized overview",
+  "steps": ["step 1", "step 2", "step 3", "step 4", "step 5", "step 6"]
+}
+Only respond with JSON, no extra text.`;
+
+    const text = await groqRequest(prompt);
+    const clean = text.replace(/```json|```/g, "").trim();
+    res.json(JSON.parse(clean));
+  } catch (err) {
+    console.error("Roadmap error:", err.message);
+    res.status(500).json({ message: "Roadmap generation failed" });
   }
 });
 

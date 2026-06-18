@@ -12,6 +12,7 @@ import "./assets/css/style.css";
 import AuthSuccess from "./pages/AuthSuccess";
 import Jobs from "./pages/Jobs";
 import Profile from "./pages/Profile";
+import Roadmaps from "./pages/Roadmaps";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/auth/success" element={<AuthSuccess />} />
         <Route path="/jobs" element={<ProtectedRoute><Jobs /></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Route path="/roadmaps" element={<ProtectedRoute><Roadmaps /></ProtectedRoute>} />
       </Routes>
       <Footer />
     </Router>
