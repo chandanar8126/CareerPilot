@@ -7,7 +7,7 @@ function Profile() {
     const [profile, setProfile] = useState(null);
     const [progress, setProgress] = useState(null);
     const [editing, setEditing] = useState(false);
-    const [form, setForm] = useState({ bio: "", targetRole: "", linkedIn: "", github: "", avatar: "" });
+    const [form, setForm] = useState({ bio: "", targetRole: "", linkedIn: "", github: "" });
     const [saving, setSaving] = useState(false);
     const [msg, setMsg] = useState("");
 
@@ -30,7 +30,6 @@ function Profile() {
                 targetRole: profileRes.data.targetRole || "",
                 linkedIn: profileRes.data.linkedIn || "",
                 github: profileRes.data.github || "",
-                avatar: profileRes.data.avatar || "",
             });
         } catch {
             setMsg("Failed to load profile.");
@@ -117,7 +116,6 @@ function Profile() {
         @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
       `}</style>
 
-            {/* Header */}
             <h2 style={{ textAlign: "center", fontSize: "2.5rem", background: "linear-gradient(90deg,#ff6ec7,#4facfe)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: "0.3rem" }}>
                 My Profile
             </h2>
@@ -134,11 +132,10 @@ function Profile() {
                     <div>
                         {/* Avatar + name */}
                         <div className="profile-card" style={{ display: "flex", alignItems: "center", gap: "1.25rem" }}>
-                            <div style={{ width: "64px", height: "64px", borderRadius: "50%", background: "linear-gradient(135deg,#00f5d4,#f72585)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, overflow: "hidden" }}>
-                                {profile?.avatar
-                                    ? <img src={profile.avatar} alt="avatar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                                    : <span style={{ fontSize: "1.5rem", fontWeight: 700, color: "#fff" }}>{authUser?.name?.[0]?.toUpperCase()}</span>
-                                }
+                            <div style={{ width: "64px", height: "64px", borderRadius: "50%", background: "linear-gradient(135deg,#00f5d4,#f72585)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                                <span style={{ fontSize: "1.5rem", fontWeight: 700, color: "#fff" }}>
+                                    {authUser?.name?.[0]?.toUpperCase()}
+                                </span>
                             </div>
                             <div>
                                 <h3 style={{ color: "#fff", fontFamily: "Montserrat, sans-serif", fontWeight: 600, marginBottom: "0.2rem" }}>{profile?.name}</h3>
@@ -166,8 +163,6 @@ function Profile() {
                                     <input className="profile-input" placeholder="https://linkedin.com/in/..." value={form.linkedIn} onChange={e => setForm({ ...form, linkedIn: e.target.value })} />
                                     <p className="label">GitHub URL</p>
                                     <input className="profile-input" placeholder="https://github.com/..." value={form.github} onChange={e => setForm({ ...form, github: e.target.value })} />
-                                    <p className="label">Avatar URL</p>
-                                    <input className="profile-input" placeholder="https://..." value={form.avatar} onChange={e => setForm({ ...form, avatar: e.target.value })} />
                                     <button className="btn" style={{ width: "100%", marginTop: "0.5rem" }} onClick={saveProfile} disabled={saving}>
                                         {saving ? "Saving..." : "Save changes"}
                                     </button>
@@ -195,7 +190,6 @@ function Profile() {
                         <div className="profile-card" style={{ textAlign: "center" }}>
                             <p className="section-title">Profile completion</p>
 
-                            {/* Ring */}
                             <div style={{ display: "flex", justifyContent: "center", marginBottom: "1rem" }}>
                                 <svg width="100" height="100" viewBox="0 0 80 80">
                                     <circle cx="40" cy="40" r="36" fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="6" />
@@ -225,7 +219,6 @@ function Profile() {
                                 {progress?.completed ?? 0} of {progress?.total ?? 0} tasks complete
                             </p>
 
-                            {/* Checklist */}
                             <div>
                                 {progress?.checks?.map((check, i) => (
                                     <div key={i} className="check-row">

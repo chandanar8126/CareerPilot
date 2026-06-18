@@ -4,7 +4,7 @@ const User = require("../models/User");
 const Skill = require("../models/Skill");
 const authMiddleware = require("../middleware/authMiddleware");
 
-// GET /api/profile — get current user profile
+// GET /api/profile
 router.get("/", authMiddleware, async (req, res) => {
     try {
         const user = await User.findById(req.user._id).select("-password");
@@ -14,13 +14,13 @@ router.get("/", authMiddleware, async (req, res) => {
     }
 });
 
-// PUT /api/profile — update profile fields
+// PUT /api/profile
 router.put("/", authMiddleware, async (req, res) => {
     try {
-        const { bio, targetRole, linkedIn, github, avatar } = req.body;
+        const { bio, targetRole, linkedIn, github } = req.body;
         const updated = await User.findByIdAndUpdate(
             req.user._id,
-            { bio, targetRole, linkedIn, github, avatar },
+            { bio, targetRole, linkedIn, github },
             { new: true }
         ).select("-password");
         res.json(updated);
@@ -29,7 +29,7 @@ router.put("/", authMiddleware, async (req, res) => {
     }
 });
 
-// PUT /api/profile/interview-done — mark interview as completed
+// PUT /api/profile/interview-done
 router.put("/interview-done", authMiddleware, async (req, res) => {
     try {
         const updated = await User.findByIdAndUpdate(
@@ -43,7 +43,7 @@ router.put("/interview-done", authMiddleware, async (req, res) => {
     }
 });
 
-// GET /api/profile/progress — calculate profile completion %
+// GET /api/profile/progress
 router.get("/progress", authMiddleware, async (req, res) => {
     try {
         const user = await User.findById(req.user._id).select("-password");
@@ -51,7 +51,6 @@ router.get("/progress", authMiddleware, async (req, res) => {
 
         const checks = [
             { label: "Name added", done: !!user.name },
-            { label: "Avatar uploaded", done: !!user.avatar },
             { label: "Bio / headline written", done: !!user.bio },
             { label: "Target role set", done: !!user.targetRole },
             { label: "3+ skills added", done: skills.length >= 3 },
